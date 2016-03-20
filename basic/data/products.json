@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Wheat bread",
+        "price": 2.2,
+        "stock": 0
+    },
+    {
+        "id": 2,
+        "name": "Salami 300g",
+        "price": 3,
+        "stock": 0
+    },
+    {
+        "id": 3,
+        "name": "Fanta 1.5l",
+        "price": 1.5,
+        "stock": 0
+    },
+    {
+        "id": 4,
+        "name": "Eggs (10)",
+        "price": 1.8,
+        "stock": 0
+    },
+    {
+        "id": 5,
+        "name": "gwegw",
+        "price": 5.5,
+        "stock": 55
+    },
+    {
+        "id": 6,
+        "name": "Cola",
+        "price": 5.5,
+        "stock": 55
+    }
+]

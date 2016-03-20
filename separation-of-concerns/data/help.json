@@ -1,0 +1,70 @@
+{
+	"api": "Inventory API",
+	"version": "1",
+	"resources": [
+		{
+			"uri": "/",
+			"method": "GET",
+			"description": "API documentation"
+		},
+		{
+			"uri": "/products",
+			"method": "GET",
+			"return": [[
+				"id",
+				"name",
+				"price",
+				"stock"
+			], ["..."]],
+			"description": "Get all products in the inventory"
+		},
+		{
+			"uri": "/products",
+			"method": "POST",
+			"return": [
+				"success",
+				"error"
+			],
+			"data": [
+				"name",
+				"price",
+				"stock"
+			],
+			"description": "Add a product to the inventory"
+		},
+		{
+			"uri": "/products/{id}",
+			"method": "GET",
+			"return": [
+				"id",
+				"name",
+				"price",
+				"stock"
+			],
+			"description": "Get the product with a given id"
+		},
+		{
+			"uri": "/products/{id}",
+			"method": "DELETE",
+			"return": [
+				"success",
+				"error"
+			],
+			"description": "Delete the product with a given id"
+		},
+		{
+			"uri": "/products/{id}",
+			"method": "PUT",
+			"return": [
+				"success",
+				"error"
+			],
+			"data": [
+				"name",
+				"price",
+				"stock"
+			],
+			"description": "Update a product with a given id"
+		}
+	]
+}

@@ -1,0 +1,30 @@
+[
+	{
+		"id": 1,
+		"name": "Wheat bread",
+		"price": 2.2,
+		"date_added": "",
+		"date_updated": ""
+	},
+	{
+		"id": 2,
+		"name": "Salami 300g",
+		"price": 3,
+		"date_added": "",
+		"date_updated": ""
+	},
+	{
+		"id": 3,
+		"name": "Fanta 1.5l",
+		"price": 1.5,
+		"date_added": "",
+		"date_updated": ""
+	},
+	{
+		"id": 4,
+		"name": "Eggs (10)",
+		"price": 1.8,
+		"date_added": "",
+		"date_updated": ""
+	}
+]
