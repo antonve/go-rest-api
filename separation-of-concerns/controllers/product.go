@@ -105,5 +105,6 @@ func Return404(w http.ResponseWriter, r *http.Request, err string) {
 }
 
 func Serve404(w http.ResponseWriter, r *http.Request) {
+    w.Header().Set("Content-type", "application/json")
     w.Write([]byte(`{"error": "404 page not found"}`))
 }
