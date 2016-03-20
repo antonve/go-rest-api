@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 )
 
-func GetProductsJson() Products {
+func GetProducts() Products {
 	file, err := ioutil.ReadFile(path.Join("data", "products.json"))
 
 	if err != nil {

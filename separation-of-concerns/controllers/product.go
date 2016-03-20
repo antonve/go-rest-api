@@ -20,7 +20,7 @@ func APIProductsGet(w http.ResponseWriter, r *http.Request, _ httprouter.Params)
 }
 
 func APIProductsPost(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-    products := models.GetProductsJson()
+    products := models.GetProducts()
     product, err := models.ParseProduct(products.GetLastId()+1, r)
     if err != nil {
         w.Write([]byte(fmt.Sprintf(`{"success": false, "error": "Error adding product: %v"}`, err)))
@@ -42,7 +42,7 @@ func APIProductGet(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
         return
     }
 
-    products := models.GetProductsJson()
+    products := models.GetProducts()
     product := products.Get(id);
 
     if product == nil {
@@ -67,7 +67,7 @@ func APIProductPut(w http.ResponseWriter, r *http.Request, ps httprouter.Params)
         return
     }
 
-    products := models.GetProductsJson()
+    products := models.GetProducts()
     product, err := models.ParseProduct(id, r)
     if err != nil {
         w.Write([]byte(fmt.Sprintf(`{"success": false, "error": "Error updating product: %v"}`, err)))
@@ -89,7 +89,7 @@ func APIProductDelete(w http.ResponseWriter, r *http.Request, ps httprouter.Para
         return
     }
 
-    products := models.GetProductsJson()
+    products := models.GetProducts()
     err = products.Delete(id)
 
     if err == nil {
