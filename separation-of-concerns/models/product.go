@@ -3,12 +3,6 @@ package models
 import (
     "errors"
     "fmt"
-    "net/http"
-    "strconv"
-    "path"
-    "encoding/json"
-    "log"
-    "io/ioutil"
 )
 
 type Products struct {
@@ -81,65 +75,4 @@ func (products *Products) Add(product *Product) error {
 
     products.Products = append(products.Products, *product)
     return SaveProducts(products)
-}
-
-
-
-
-func ParseProduct(id int, r *http.Request) (*Product, error) {
-    r.ParseForm()
-    var err error
-    product := new(Product)
-    product.Id = id;
-
-    product.Name = r.FormValue("name")
-    if product.Name == "" {
-        return nil, errors.New("Name can't be empty")
-    }
-
-    product.Price, err = strconv.ParseFloat(r.FormValue("price"), 64)
-    if err != nil {
-        return nil, errors.New("Can't parse price to float")
-    }
-
-    product.Stock, err = strconv.Atoi(r.FormValue("stock"))
-    if err != nil {
-        return nil, errors.New("Can't parse stock to int")
-    }
-
-    return product, nil
-}
-
-
-// Products datastorage helpers
-
-func GetProductsJson() Products {
-    file, err := ioutil.ReadFile(path.Join("data", "products.json"))
-
-    if err != nil {
-        log.Println("Error reading JSON file: %v", err)
-    }
-
-    var products Products
-
-    err = json.Unmarshal(file, &products.Products)
-    if err != nil {
-        log.Println("Error with JSON products: %v", err)
-    }
-
-    return products
-}
-
-func SaveProducts(products *Products) error {
-    b, err := json.MarshalIndent(products.Products, "", "    ")
-    if err != nil {
-        return err
-    }
-
-    err = ioutil.WriteFile(path.Join("data", "products.json"), b, 0644)
-    if err != nil {
-        return err
-    }
-
-    return nil
 }
