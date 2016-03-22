@@ -22,11 +22,20 @@ func main() {
 
     // Routes
     e.Static("/", "data/help.json")
-    e.Get("/products", echo.HandlerFunc(controllers.APIProductsGet))
-    e.Post("/products", echo.HandlerFunc(controllers.APIProductsPost))
-    e.Get("/products/:id", echo.HandlerFunc(controllers.APIProductGet))
-    e.Put("/products/:id", echo.HandlerFunc(controllers.APIProductPut))
-    e.Delete("/products/:id", echo.HandlerFunc(controllers.APIProductDelete))
+
+    g := e.Group("/products")
+    g.Use(middleware.BasicAuth(func(username, password string) bool {
+        if username == "foo" && password == "bar" {
+            return true
+        }
+        return false
+    }))
+
+    g.Get("", echo.HandlerFunc(controllers.APIProductsGet))
+    g.Post("", echo.HandlerFunc(controllers.APIProductsPost))
+    g.Get("/:id", echo.HandlerFunc(controllers.APIProductGet))
+    g.Put("/:id", echo.HandlerFunc(controllers.APIProductPut))
+    g.Delete("/:id", echo.HandlerFunc(controllers.APIProductDelete))
 
     // Start server
     e.Run(standard.New(":1323"))
